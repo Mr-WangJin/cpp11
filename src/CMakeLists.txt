@@ -1,0 +1,12 @@
+#MESSAGE(STATUS "This is additionan include path" ${CMAKE_INCLUDE_PATH})
+
+
+ADD_SUBDIRECTORY(thread)
+ADD_SUBDIRECTORY(lamda)
+
+#ADD_SUBDIRECTORY(jk_qt)
+
+#SET(PROJECT_NAME "particle01")
+#START_EXAMPLE()
+
+
