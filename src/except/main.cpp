@@ -15,14 +15,23 @@ struct B {
 };
 
 
-struct C {
-	B b;
-};
-
+void funA() { A a; }
+void funB() { B b; }
 
 int main()
 {
 	try {
+		funB();
+	}
+	catch (...) {
+		std::cout << "caught funB." << std::endl;
+	}
+
+	try {
+		funA();
+	}
+	catch(...){
+		std::cout << "caught funA." << std::endl;
 	}
 	return 1;
 }
