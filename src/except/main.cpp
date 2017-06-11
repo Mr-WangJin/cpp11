@@ -1,22 +1,11 @@
 
 #include <iostream>
+#include <assert.h>
 using namespace std;
 
-struct A {
-	~A() {
-		throw 1;
-	}
-};
 
-struct B {
-	~B() noexcept(false) {
-		throw 2;
-	}
-};
-
-
-void funA() { A a; }
-void funB() { B b; }
+void funA() noexcept { throw "A"; }
+void funB() noexcept(false) { throw "B"; }
 
 int main()
 {
@@ -28,7 +17,7 @@ int main()
 	}
 
 	try {
-		funA();
+		funA();			// 会进入到 std::terminate();
 	}
 	catch(...){
 		std::cout << "caught funA." << std::endl;
