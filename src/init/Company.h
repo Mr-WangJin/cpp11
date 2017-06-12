@@ -7,7 +7,7 @@ public:
 	Company(const std::string &type) : m_Type(type){
 		this->initialize();
 	}
-	Company(const std::string &name, const std::string &type) : Company(type) {	//这里用到了委托构造函数
+	Company(const std::string &name, const std::string &type) : Company(type) {		//这里用到了委托构造函数
 		m_Name = name;
 	};
 
