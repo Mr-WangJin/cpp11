@@ -11,7 +11,7 @@ void testFunction(std::function<int(int)> func2) {
 }
 
 
-double my_divide(double x, double y) { return x / y; }
+void getSum(double x, double y, double &sum) { sum = x + y; }
 
 struct MyPair {
 	double a, b;
@@ -22,23 +22,31 @@ void testBind() {
 	std::cout << std::endl << __func__ << std::endl;
 	using namespace std::placeholders;    
 
-	auto fn_five = std::bind(my_divide, 10, 2);               // returns 10/2
-	std::cout << fn_five() << '\n';                          // 5
+	double n1 = 10.0;
+	double n2 = 2.0;
+	double n3 = 0.0f;
 
-	auto fn_half = std::bind(my_divide, _1, 2);               // returns x/2
-	std::cout << fn_half(10) << '\n';                        // 5
+	auto fn_five = std::bind(getSum, n1, n2, std::ref(n3));					// returns 10+2
+	n1 = 12.0;				
+	fn_five();
+	std::cout << n3 << '\n';                          
 
-	auto fn_invert = std::bind(my_divide, _2, _1);            // returns y/x
-	std::cout << fn_invert(10, 2) << '\n';                    // 0.2
+	auto fn_half = std::bind(getSum, _1, 2, std::ref(n3));					// returns  _1+2
+	fn_half(11);
+	std::cout << n3 << '\n';                       
+
+	auto fn_invert = std::bind(getSum, _2, _1, std::ref(n3));				// returns 2+10
+	fn_invert(10, 2);
+	std::cout << n3 << '\n';                    
 
 	MyPair ten_two{ 10,2 };
 
 	// binding members:
-	auto bound_member_fn = std::bind(&MyPair::multiply, _1); // returns x.multiply()
-	std::cout << bound_member_fn(ten_two) << '\n';           // 20
+	auto bound_member_fn = std::bind(&MyPair::multiply, _1);				// returns x.multiply()
+	std::cout<< bound_member_fn(ten_two) << '\n';							// 20
 
-	auto bound_member_data = std::bind(&MyPair::a, ten_two); // returns ten_two.a
-	std::cout << bound_member_data() << '\n';                // 10
+	auto bound_member_data = std::bind(&MyPair::a, ten_two);				// returns ten_two.a
+	std::cout << bound_member_data() << '\n';								// 10
 }
 
 int main()
