@@ -49,6 +49,17 @@ void testFor() {
 	}
 }
 
+using DataArray = std::vector<int>;		//Ïàµ±ÓÚ typedef std::vector<int> DataArray;
+using PrintVal = void(int);
+
+void printVal(int v)
+{
+	std::cout << v << std::endl;
+}
+void testUsing() {
+	PrintVal* p = printVal;
+	p(100);
+}
 
 
 
@@ -60,6 +71,7 @@ int main()
 	a->printFunName();
 
 	testFor();
+	testUsing();
 
 	system("pause");
 }
