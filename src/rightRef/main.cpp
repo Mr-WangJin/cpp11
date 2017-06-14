@@ -9,6 +9,7 @@ public:
 	};
 	void init(int &&intval)
 	{
+		intval = 11;
 		std::cout << "use && print" << std::endl;
 	}
 };
