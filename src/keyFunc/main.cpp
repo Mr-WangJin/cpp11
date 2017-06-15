@@ -32,6 +32,12 @@ public:
 	}
 };
 
+void testFuncKeyWorkd() {
+	ABase* a = new A();
+	a->printFunName();
+	delete a;
+}
+
 void testFor() {
 	/** 
 	 *	可以遍历的对象包括：
@@ -61,17 +67,25 @@ void testUsing() {
 	p(100);
 }
 
+void testDecltype() {
+	int i = 10;
+	decltype(i) a;			//a推导为int
+	decltype((i))b = i;		//b推导为int&，必须为其初始化，否则编译错误
+
+	i += 1;
+	std::cout << "test decltype" << std::endl;
+	std::cout << b << std::endl;
+}
+
 
 
 int main()
 {
 	testAssert();
-
-	ABase* a = new A();
-	a->printFunName();
-
+	testFuncKeyWorkd();
 	testFor();
 	testUsing();
+	testDecltype();
 
 	system("pause");
 }
