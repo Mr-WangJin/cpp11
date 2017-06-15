@@ -5,6 +5,7 @@
 #include "testThread3.h"
 #include "testThread4.h"
 #include "testThread5.h"
+#include "testThread6.h"
 
 void pause_thread(int n)
 {
@@ -16,9 +17,10 @@ int main()
 {
 	//testThread1();
 	//testThread2();
-	testThread3();
+	//testThread3();
 	//testThread4();
 	//testThread5();
+	testThread6();
 
 	system("pause");
 	return 0;
