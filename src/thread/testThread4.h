@@ -22,7 +22,6 @@ void testThread5() {
 
 	std::thread th(std::move(tsk), 10, 0);   // spawn thread to count down from 10 to 0
 
-
 	int value = ret.get();                  // wait for the task to finish and get result
 
 	std::cout << "The countdown lasted for " << value << " seconds.\n";
