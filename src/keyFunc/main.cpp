@@ -77,15 +77,53 @@ void testDecltype() {
 	std::cout << b << std::endl;
 }
 
+constexpr int getArrayCount(int x, int y) {
+	return x * y;
+}
 
+void testConstExpr() {
+	int Array[getArrayCount(1, 3)] = { 1, 2, 3 };
+	for (int var : Array)
+	{
+		std::cout << var << std::endl;
+	}
+}
+
+
+class TestDefaultClass {
+public:
+	TestDefaultClass() {};                  // default constructor
+	~TestDefaultClass() {};                 // destructor
+
+	TestDefaultClass(const TestDefaultClass & rhs) {};         // copy constructor
+	TestDefaultClass & operator=(const TestDefaultClass & rhs) {};    // copy assignment operator
+
+	TestDefaultClass(const TestDefaultClass && rhs) {};         // C++11, move constructor
+	TestDefaultClass & operator=(TestDefaultClass && rhs) {};    // C++11, move assignment operator
+};
+class TestDefaultClass1 {
+public:
+	TestDefaultClass1() = default;
+	TestDefaultClass1(int) {};
+
+// 	TestDefaultClass1(const TestDefaultClass1 & rhs) = delete;
+// 	TestDefaultClass1 & operator=(const TestDefaultClass1 & rhs) = delete;
+// 
+// 	TestDefaultClass1(const TestDefaultClass1 && rhs) {};         // C++11, move constructor
+
+
+};
+TestDefaultClass1 t1;
+TestDefaultClass1 t2(std::move(t1));
 
 int main()
 {
-	testAssert();
-	testFuncKeyWorkd();
-	testFor();
-	testUsing();
-	testDecltype();
+// 	testAssert();
+// 	testFuncKeyWorkd();
+// 	testFor();
+// 	testUsing();
+// 	testDecltype();
+	testConstExpr();
 
 	system("pause");
 }

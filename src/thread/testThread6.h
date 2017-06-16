@@ -11,8 +11,8 @@ bool ready = false;
 
 void print_id(int id) {
 	std::unique_lock<std::mutex> lck(mtx);
-	while (!ready) cv.wait(lck);
-	// ...
+	while (!ready) 
+		cv.wait(lck);
 	std::cout << "thread " << id << '\n';
 }
 
@@ -24,13 +24,15 @@ void go() {
 
 void testThread6()
 {
-	std::thread threads[10];
-	// spawn 10 threads:
-	for (int i = 0; i<10; ++i)
+	constexpr int arrySize = 5;
+	std::thread threads[arrySize];
+	// spawn  threads:
+	for (int i = 0; i<arrySize; ++i)
 		threads[i] = std::thread(print_id, i);
 
-	std::cout << "10 threads ready to race...\n";
+	std::cout << "arrySize threads ready to race...\n";
 	go();                       // go!
 
-	for (auto& th : threads) th.join();
+	for (auto& th : threads) 
+		th.join();
 }

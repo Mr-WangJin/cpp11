@@ -36,7 +36,7 @@ void setPromiseFutValue(std::promise<int>& p) {
 void testThread3() {
 	std::cout << std::endl << __func__ << std::endl;
 
-	std::promise<int> prom;                      // 生成一个 promise 
+	std::promise<int> prom;                      // 生成一个 promise    //promise 包装了一个变量，使用fuure来传递的一个过程
 
 	std::future<int> fut = prom.get_future();    //  和 future 关联
 
